@@ -1,0 +1,32 @@
+.font-family-body {
+  font-family: $body-font-family !important;
+}
+
+.font-family-heading {
+  font-family: $heading-font-family !important;
+}
+
+.letter-spacing-1 {
+  letter-spacing: 0.15rem !important;
+}
+
+.letter-spacing-2 {
+  letter-spacing: 0.25rem !important;
+}
+
+.dark-text--primary {
+  color: #fcfffb !important;
+}
+.dark-text--secondary {
+  color: rgba(#fcfffb, 0.74) !important;
+}
+
+.link--secondary {
+  // TODO: use variable to get secondary-text-color
+  color: map-deep-get($material-dark, 'text', 'secondary');
+  text-decoration: none !important;
+
+  &:hover, &:focus {
+    color: rgba(#fff, 1);
+  }
+}

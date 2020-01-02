@@ -1,0 +1,22 @@
+
+
+.primary-gradient {
+  background-color: var(--v-primary-base);
+  // background-image: linear-gradient(45deg, var(--v-primary-base) 46%, var(--v-black-purple-lighten2) 130%);
+  background-image: linear-gradient(45deg, var(--v-primary-base) 46%, var(--v-secondary-base) 120%);
+}
+
+.primary-gradient--stripped {
+  background-color: var(--v-primary-base);
+  background-image: linear-gradient(45deg, var(--v-primary-base) 46%, var(--v-secondary-base) 46%);
+}
+
+.secondary-gradient {
+  background-color: var(--v-secondary-base);
+  background-image: linear-gradient(45deg, var(--v-secondary-base) 46%, var(--v-accent-base) 150%);
+}
+
+.secondary-gradient--stripped {
+  background-color: var(--v-secondary-base);
+  background-image: linear-gradient(45deg, var(--v-secondary-base) 46%, var(--v-accent-base) 46%);
+}

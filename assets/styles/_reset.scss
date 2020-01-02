@@ -1,0 +1,122 @@
+body {
+  scrollbar-face-color: var(--v-primary-darken2);
+}
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+body::-webkit-scrollbar-track {
+  // background: map-get($shades, 'white');
+  // box-shadow: inset 0 0 3px 1px var(--v-primary-darken1)aa;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--v-primary-darken3);
+  background: linear-gradient(to bottom, var(--v-primary-darken3), var(--v-secondary-darken3));
+  border-radius: 2px;
+  box-shadow: inset 0 0 1px var(--v-primary-darken1);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--v-primary-darken2);
+  background: linear-gradient(to bottom, var(--v-primary-darken2), var(--v-secondary-darken2));
+  box-shadow: inset 0 0 1px var(--v-primary-base);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: var(--v-primary-darken4);
+  background: linear-gradient(to bottom, var(--v-primary-darken4), var(--v-secondary-darken4));
+  box-shadow: inset 0 0 1px var(--v-primary-darken2);
+}
+
+
+$border-radius: 4px;
+
+@for $i from 0 through 2 {
+  .rounded-#{$i} {
+    border-radius: $border-radius * $i !important;
+  }
+}
+
+.max-width-600 {
+  max-width: 600px !important;
+}
+
+.max-width-400 {
+  max-width: 400px !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.h-100 {
+  height: 100% !important;
+}
+
+.vw-100 {
+  width: 100vw;
+}
+
+.vh-100 {
+  height: 100vh;
+}
+
+.mh-100 {
+  min-height: 100%;
+}
+
+.mvh-100 {
+  min-height: 100vh;
+}
+
+.v-btn {
+  letter-spacing: 1.2px;
+}
+
+.pos-relative {
+  position: relative !important;
+}
+
+.flex-grow-0 {
+  flex-grow: 0 !important;
+}
+
+.lin-grad-pri-sec {
+  background: linear-gradient(to right, var(--v-primary-darken1), var(--v-secondary-darken1))
+}
+
+.rounded-50 {
+  border-radius: 50%;
+}
+
+.v-toolbar--fixed {
+  z-index: 5;
+}
+
+.v-badge--overlap .v-badge__badge {
+  right: 0px !important;
+}
+
+.v-badge--bottom .v-badge__badge {
+  bottom: 0px !important;
+}
+
+.form__phone-number {
+  .v-input__prepend-outer {
+    margin-top: 0 !important;
+  }
+}
+
+.primary-transition-time {
+  transition-duration: 0.6s;
+}
+
+.secondary-transition-time {
+  transition-duration: 0.4s;
+}

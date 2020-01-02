@@ -1,0 +1,38 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+$color-pack: false;
+
+$spacer: 8px;
+
+$body-font-family : Montserrat,
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Roboto,
+Oxygen-Sans,
+Ubuntu,
+Cantarell,
+"Helvetica Neue",
+sans-serif;
+$font-size-root: 18px;
+
+$shadow-key-umbra-opacity: rgba(0, 20, 50, 0.1);
+$shadow-key-penumbra-opacity: rgba(0, 20, 50, 0.07);
+$shadow-key-ambient-opacity: rgba(0, 20, 50, 0.06);
+
+$border-radius: 8px;
+
+$btn-text-transform: capitalize;
+
+@import '~vuetify/src/styles/styles.sass';
+
+// For updating SASS lists
+$material-light: map-merge($material-light, ('background': #fcfeff,
+
+    'text': ('theme': map-get($shades, 'white'),
+      'primary': #665f61,
+      'secondary': rgba(#665f61, 0.74),
+      'disabled': rgba(#665f61, 0.48),
+      'link': map-get($blue, 'darken-2'),
+      'link-hover': map-get($grey, 'darken-3'))));
+
+$font-weights: map-merge($font-weights, ('medium': 600, 'bold': 700));
