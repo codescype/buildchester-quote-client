@@ -82,14 +82,14 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3
         }
+      },
+
+      options: {
+        customProperties: true
       }
     },
 
-    treeShake: true,
-
-    options: {
-      customProperties: true
-    }
+    treeShake: true
   },
   /*
    ** Build configuration

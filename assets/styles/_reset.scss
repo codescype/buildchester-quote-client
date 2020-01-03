@@ -16,22 +16,22 @@ body::-webkit-scrollbar-track {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--v-primary-darken3);
-  background: linear-gradient(to bottom, var(--v-primary-darken3), var(--v-secondary-darken3));
+  background: var(--v-primary-base);
+  background: linear-gradient(to bottom, var(--v-primary-base), var(--v-accent-darken3));
   border-radius: 2px;
-  box-shadow: inset 0 0 1px var(--v-primary-darken1);
+  box-shadow: inset 0 0 1px var(--v-primary-lighten2);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: var(--v-primary-darken2);
-  background: linear-gradient(to bottom, var(--v-primary-darken2), var(--v-secondary-darken2));
+  background: var(--v-primary-lighten1);
+  background: linear-gradient(to bottom, var(--v-primary-lighten1), var(--v-accent-lighten1));
   box-shadow: inset 0 0 1px var(--v-primary-base);
 }
 
 ::-webkit-scrollbar-thumb:window-inactive {
   background: var(--v-primary-darken4);
-  background: linear-gradient(to bottom, var(--v-primary-darken4), var(--v-secondary-darken4));
-  box-shadow: inset 0 0 1px var(--v-primary-darken2);
+  background: linear-gradient(to bottom, var(--v-primary-darken1), var(--v-accent-darken1));
+  box-shadow: inset 0 0 1px var(--v-primary-lighten1);
 }
 
 
@@ -79,7 +79,7 @@ $border-radius: 4px;
   letter-spacing: 1.2px;
 }
 
-.pos-relative {
+.position-relative {
   position: relative !important;
 }
 

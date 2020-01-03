@@ -17,7 +17,7 @@
         <h1
           class="headline text-uppercase mb-3 primary--text mb-3 mb-sm-4 font-weight-bold"
         >
-          Get Quote
+          Housing Scheme Application
         </h1>
 
         <v-alert
@@ -27,7 +27,7 @@
           dense
           color="error"
           class="mb-3"
-          elevation="2"
+          elevation="5"
           border="left"
           transition="slide-y-reverse-transition"
         />
@@ -221,7 +221,7 @@
                 color="secondary"
                 type="submit"
               >
-                Get Quote
+                Submit
               </v-btn>
             </v-flex>
           </v-layout>
@@ -229,12 +229,30 @@
           <v-dialog
             v-model="shouldShowDialog"
             max-width="400px"
-            content-class="white"
+            content-class="white position-relative px-3 py-4"
           >
-            <div class="pa-3">
+            <v-icon size="64" color="success" class="mb-2 d-block mx-auto">
+              {{ mdiCheckCircleOutline }}
+            </v-icon>
+
+            <h4 class="success--text text--darken-2 mb-1">
+              Submitted Successfully
+            </h4>
+
+            <p class="mb-2">
               Your request has been received. We'll get back to you as soon as
-              possible
-            </div>
+              possible.
+            </p>
+
+            <p class="mb-0 ">
+              <small>Here's your <strong>Reference ID:</strong></small>
+              <code>{{ referenceId }}</code>
+            </p>
+
+            <p class="subtitle text--secondary">
+              We've sent a copy of the
+              <span class="text--primary">Reference ID</span> to your email.
+            </p>
           </v-dialog>
         </v-form>
       </v-col>
@@ -257,6 +275,7 @@
 </template>
 
 <script>
+import { mdiCheckCircleOutline } from '@mdi/js'
 import countryCodes from '@/data/country-codes.json'
 
 export default {
@@ -323,18 +342,24 @@ export default {
         age: [
           (value) => this.isFieldEmpty(value, 'Age'),
           (value) => Number(value) > 10 || 'Too young'
+        ],
+        address: [
+          (value) => this.isFieldEmpty(value, 'Address'),
+          (value) => this.isFieldLengthy(value, 300, 'Address')
         ]
       },
 
       shouldShowCountries: false,
 
-      shouldShowDialog: true,
+      shouldShowDialog: false,
 
       formIsProcessing: false,
 
       errorResponse: '',
 
-      errorResponseMessage: ''
+      referenceId: '',
+
+      mdiCheckCircleOutline
     }
   },
 
@@ -345,6 +370,16 @@ export default {
       const ageDiffMs = new Date() - new Date(this.pickedDate)
       const ageDate = new Date(ageDiffMs) // miliseconds from epoch
       return Math.abs(ageDate.getUTCFullYear() - 1970)
+    },
+
+    errorResponseMessage() {
+      if (this.errorResponse === 'EMAIL EXISTS') {
+        return `You've already used this email to apply for housing scheme. In case you are yet to get our response, we'll get back to you soon.`
+      } else if (this.errorResponse === '') {
+        return ''
+      } else {
+        return 'An Error occurred. Please reload the page or try again later.'
+      }
     }
   },
 
@@ -377,7 +412,7 @@ export default {
   },
 
   methods: {
-    submit() {
+    async submit() {
       if (!this.formIsValid || this.formIsProcessing) return
 
       // eslint-disable-next-line no-console
@@ -385,6 +420,39 @@ export default {
 
       this.formIsProcessing = true
       this.errorResponse = ''
+      this.referenceId = ''
+
+      const data = {
+        ...this.form,
+        dateOfBirth: new Date(this.pickedDate),
+        age: this.age,
+        dateCreated: new Date()
+      }
+
+      data.phoneNumber = this.country.dialCode + this.form.phoneNumber
+
+      try {
+        const { data: response } = await this.$axios({
+          method: 'post',
+          url: `${process.env.DB_HOST}/add`,
+          data
+        })
+
+        if (response.error) {
+          // eslint-disable-next-line no-console
+          console.error(response.error)
+          this.errorResponse = response.error.message
+        } else {
+          this.referenceId = response.referenceId
+          this.shouldShowDialog = true
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error)
+        // this.errorResponse = error.error.message
+      }
+
+      this.formIsProcessing = false
     },
 
     isFieldEmpty(value, fieldName) {
