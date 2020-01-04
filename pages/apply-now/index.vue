@@ -282,7 +282,7 @@ export default {
   name: 'HomePage',
 
   head: {
-    title: 'Get Quote'
+    title: 'Apply Now'
   },
 
   data() {
