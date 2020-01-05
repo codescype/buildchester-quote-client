@@ -90,7 +90,7 @@
               >
                 <template #prepend-inner>
                   <v-img
-                    :src="`/icons/svg/flags/${country.code}.svg`"
+                    :src="`/icons/svg/flags/${country.code.toLowerCase()}.svg`"
                     :height="20"
                     :width="26.6667"
                     class="rounded-1"
