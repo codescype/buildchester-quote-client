@@ -160,7 +160,6 @@
                     max="2010-01-01"
                     color="secondary"
                     header-color="primary"
-                    reactive
                   ></v-date-picker>
                 </template>
               </v-menu>
@@ -279,7 +278,7 @@ import { mdiCheckCircleOutline } from '@mdi/js'
 import countryCodes from '@/data/country-codes.json'
 
 export default {
-  name: 'HomePage',
+  name: 'ApplyNow',
 
   head: {
     title: 'Apply Now'
@@ -380,6 +379,15 @@ export default {
       } else {
         return 'An Error occurred. Please reload the page or try again later.'
       }
+    }
+  },
+
+  watch: {
+    pickedDate(oldValue, newValue) {
+      // eslint-disable-next-line no-console
+      console.info(
+        `About to chane pickedDate from '${oldValue}' to '${newValue}';`
+      )
     }
   },
 
